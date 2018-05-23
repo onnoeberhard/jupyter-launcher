@@ -1,0 +1,4 @@
+#!/bin/bash
+
+open -a Terminal "/Applications/Jupyter.app/Contents/MacOS/launch"
+bash

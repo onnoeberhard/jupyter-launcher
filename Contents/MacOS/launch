@@ -1,0 +1,18 @@
+#!/bin/bash
+
+FILE=/Volumes/Data/Projects/stuff/`date +%F`.ipynb
+
+if [ ! -f $FILE ]
+then
+cat > $FILE << EOF
+{
+"cells": [],
+"metadata": {},
+"nbformat": 4,
+"nbformat_minor": 2
+}
+EOF
+fi
+
+/Users/onnoeberhard/anaconda3/bin/jupyter-notebook $FILE   #--notebook-dir /Volumes/Data
+bash
