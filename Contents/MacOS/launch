@@ -1,6 +1,8 @@
 #!/bin/bash
 
-FILE=/Volumes/Data/Projects/stuff/`date +%F`.ipynb
+FILE=/Users/onno/Projects/stuff/`date +%F`.ipynb
+
+python /Applications/Jupyter.app/Contents/MacOS/clean.py
 
 if [ ! -f $FILE ]
 then
@@ -14,5 +16,5 @@ cat > $FILE << EOF
 EOF
 fi
 
-/Users/onnoeberhard/anaconda3/bin/jupyter-notebook $FILE   #--notebook-dir /Volumes/Data
+/Users/onno/anaconda3/bin/jupyter-notebook $FILE   #--notebook-dir /Volumes/Data
 bash
