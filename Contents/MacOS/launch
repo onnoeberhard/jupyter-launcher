@@ -1,8 +1,19 @@
 #!/bin/bash
 
-FILE=/Users/onno/Projects/stuff/`date +%F`.ipynb
-
+source ~/anaconda3/etc/profile.d/conda.sh
+conda activate
 python /Applications/Jupyter.app/Contents/MacOS/clean.py
+
+echo "Enter p for Python, s for Sage"
+read choice
+
+if [ $choice == "s" ]
+then
+conda activate sage
+FILE=/Users/onno/Projects/stuff/`date +%F`-sage.ipynb
+else
+FILE=/Users/onno/Projects/stuff/`date +%F`.ipynb
+fi
 
 if [ ! -f $FILE ]
 then
@@ -16,5 +27,11 @@ cat > $FILE << EOF
 EOF
 fi
 
-/Users/onno/anaconda3/bin/jupyter-notebook $FILE   #--notebook-dir /Volumes/Data
+if [ $choice == "s" ]
+then
+sage -n jupyter $FILE
+else
+jupyter-notebook $FILE   #--notebook-dir /Volumes/Data
+fi
+
 bash
