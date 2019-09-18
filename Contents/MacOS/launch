@@ -7,16 +7,11 @@ python /Applications/Jupyter.app/Contents/MacOS/clean.py
 echo "Enter p for Python, s for Sage"
 read choice
 
-if [ $choice == "s" ]
-then
-conda activate sage
+if [ $choice == "s" ]; then
+conda deactivate
 FILE=/Users/onno/Projects/stuff/`date +%F`-sage.ipynb
-else
-FILE=/Users/onno/Projects/stuff/`date +%F`.ipynb
-fi
 
-if [ ! -f $FILE ]
-then
+if [ ! -f $FILE ]; then
 cat > $FILE << EOF
 {
 "cells": [],
@@ -27,11 +22,46 @@ cat > $FILE << EOF
 EOF
 fi
 
-if [ $choice == "s" ]
-then
-sage -n jupyter $FILE
+sage -n jupyter --MappingKernelManager.default_kernel_name='sagemath' $FILE
+
 else
-jupyter-notebook $FILE   #--notebook-dir /Volumes/Data
+FILE=/Users/onno/Projects/stuff/`date +%F`.ipynb
+
+if [ ! -f $FILE ]; then
+cat > $FILE << EOF
+{
+"cells": [
+{
+"cell_type": "code",
+"execution_count": null,
+"metadata": {},
+"outputs": [],
+"source": [
+    "import numpy as np\n",
+    "import matplotlib as mpl\n",
+    "import matplotlib.pyplot as plt\n",
+    "import seaborn as sns"
+]
+},
+{
+"cell_type": "code",
+"execution_count": null,
+"metadata": {},
+"outputs": [],
+"source": [
+    "# Matplotlib configuration\n",
+    "%config InlineBackend.figure_format = 'retina'\n",
+    "mpl.rc('figure', figsize=(8, 6), dpi=100)\n",
+    "sns.set()"
+]
+}
+],
+"metadata": {},
+"nbformat": 4,
+"nbformat_minor": 2
+}
+EOF
 fi
 
-bash
+jupyter-notebook $FILE   #--notebook-dir /Volumes/Data
+fi
