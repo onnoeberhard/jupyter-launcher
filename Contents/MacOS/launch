@@ -8,7 +8,7 @@ echo "Enter p for Python, s for Sage"
 read choice
 
 if [ $choice == "s" ]; then
-conda deactivate
+conda activate sage
 FILE=/Users/onno/Projects/stuff/`date +%F`-sage.ipynb
 
 if [ ! -f $FILE ]; then
