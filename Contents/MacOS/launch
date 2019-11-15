@@ -14,7 +14,20 @@ FILE=/Users/onno/Projects/stuff/`date +%F`-sage.ipynb
 if [ ! -f $FILE ]; then
 cat > $FILE << EOF
 {
-"cells": [],
+"cells": [
+{
+"cell_type": "code",
+"execution_count": null,
+"metadata": {},
+"outputs": [],
+"source": [
+    "# Config\n",
+    "%display latex\n",
+    "plot.options['dpi'] = 200\n",
+    "plot.options['figsize'] = (12, 8)"
+]
+}
+],
 "metadata": {},
 "nbformat": 4,
 "nbformat_minor": 2
